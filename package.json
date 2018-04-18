@@ -1,7 +1,6 @@
 {
   "name": "template",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
@@ -13,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.3",
+    "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.10",
     "eslint": "^4.18.2",
@@ -37,5 +39,14 @@
     "bootstrap": "^4.1.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicaleighschmitz/webpack-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jessicaleighschmitz/webpack-template/issues"
+  },
+  "homepage": "https://github.com/jessicaleighschmitz/webpack-template#readme",
+  "description": ""
 }
