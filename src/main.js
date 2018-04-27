@@ -4,12 +4,6 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-function clearSearch() {
-  $('#name').val('');
-  $('#symptom').val('');
-  $('#output').empty();
-}
-
 function getResults(displayresults) {
   let results = [];
   if (results.data.length > 0) {
@@ -44,17 +38,30 @@ $(document).ready(function(){
     let nameSearch = $("#name").val();
     let findDoctor = new doctorApi();
     let promise = findDoctor.doctorByName(nameSearch);
-    promise.then(function(response);{
+    promise.then(function(response) {
       let results = JSON.parse(response);
       if (results.data.length === 0) {
-        $('#output').append(`Error. No doctors with that name in this area.`)
+        $('#nameError').append(`Error. No doctors with that name in this area.`)
       } else {
         return getResults(results);
       }
     })
-    console.log(getResults);
   })
-
+    $("#doctorBySymptom").submit(function(event){
+      event.preventDefault();
+      let symptomSearch = $("#symptom").val();
+      let findSymptom = new doctorApi();
+      let symptomPromise = findSymptom.doctorBySymptom(symptomSearch);
+      promise.then(function(response) {
+        let results = JSON.parse(response);
+        if (results.data.length === 0) {
+          $('#symptomError').append(`Error. No doctors specializing in these symptoms in your area.`)
+        } else {
+          return getResults(results);
+        }
+      })
+    })
+  });
   // doctorSearch.doctorName(name, location).then(function(response) {
   //   let results = JSON.parse(response);
   //   let doctorSearch = findDoctor.parseData(results);

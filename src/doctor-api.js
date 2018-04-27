@@ -2,10 +2,6 @@ import $ from 'jquery';
 
 class doctorApi {
 
-  // constructor(name, symptom) {
-  //   this.name = name;
-  //   this.symptom = symptom;
-  // }
   doctorName(name, location) {
     return new Promise(function(resolve, reject) {
           let location = "or-portland";
@@ -16,7 +12,7 @@ class doctorApi {
               resolve(request.response);
             } else {
               reject(Error(request.statusText));
-              $('#error').text(`Error alert, try again! ${error.message}`);
+              $('#nameError').text(`Error alert, try again! ${error.message}`);
             }
           }
           request.open("GET", url, true);
@@ -34,7 +30,7 @@ class doctorApi {
           resolve(request.response);
         } else {
           reject(Error(request.statusText));
-          $('#error').text(`Error alert, try again! ${request.statusText}`);
+          $('#symptomError').text(`Error alert, try again! ${request.statusText}`);
         }
       }
       request.open("GET", url, true);
