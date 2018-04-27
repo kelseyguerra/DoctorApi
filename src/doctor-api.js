@@ -6,7 +6,7 @@ class doctorApi {
     return new Promise(function(resolve, reject) {
           let location = "or-portland";
           let request = new XMLHttpRequest();
-          let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=or-portland&q=${symptomSearch}&name=${nameSearch}&user_key=${process.env.exports.apiKey}`
+          let url = $.get(`https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=45.523,-122.676,100&skip=2&user_key=${process.env.exports.apiKey}`)
           request.onload = function() {
             if (this.status === 200) {
               resolve(request.response);
@@ -22,7 +22,7 @@ class doctorApi {
 
   doctorSpecialty(symptom) {
     return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();      let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=or-portland&q=${symptomSearch}&name=${nameSearch}&user_key=${process.env.exports.apiKey}`
+      let request = new XMLHttpRequest();      let url = $.get(`https://api.betterdoctor.com/2016-03-01/doctors?query=${issue}&location=45.523,-122.676,100&skip=2&user_key=${process.env.exports.apiKey}`);
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
