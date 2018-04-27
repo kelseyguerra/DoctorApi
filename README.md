@@ -15,10 +15,10 @@
 
 Behavior | Input | Ouput
 ------------ | ------------- | -------------
-Input: Doctor Name | Output: Doctor Name, Address, Phone Number, Website, Availability
-Input: Wrong Name | Output: Error
-Input: Symptoms | Output: Doctors Who Specialize in Said Symptoms
-Input: Wrong Symptoms | Output: Error
+User Inputs Doctors Name, Will Output Doctors Information| Input: Doctor Name | Output: Doctor Name, Address, Phone Number, Website, Availability
+User Inputs Wrong Doctors Name, Will Output Error | Input: Wrong Name | Output: Error
+User Inputs Symptoms, Will Output Doctors Specializing in Symptom | Input: Symptoms | Output: Doctors Who Specialize in Said Symptoms
+User Inputs Unidentified Symptom, Will Output Error |Input: Wrong Symptoms | Output: Error
 
 ## Setup/Installation Requirements
 
