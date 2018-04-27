@@ -8,8 +8,6 @@ import './styles.css';
 $(document).ready(function(){
   $("#doctorByName").submit(function(event){
     event.preventDefault();
-    let api = new doctorApi();
-    let promise = api.doctorName(response)
     let nameSearch = $("#name").val();
 
     promise.then(function(response){
