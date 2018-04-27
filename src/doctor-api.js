@@ -1,5 +1,4 @@
 import $ from 'jquery';
-const apiKey = process.env.exports.apiKey
 
 class doctorApi {
 
@@ -7,7 +6,7 @@ class doctorApi {
     return new Promise(function(resolve, reject) {
           let location = "or-portland";
           let request = new XMLHttpRequest();
-          let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&location=${location}&skip=0&limit=30&user_key=161ecea796bde3ce355e556f0fb41233`;
+          let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=or-portland&q=${symptomSearch}&name=${nameSearch}&user_key=${process.env.exports.apiKey}`
           request.onload = function() {
             if (this.status === 200) {
               resolve(request.response);
@@ -23,9 +22,7 @@ class doctorApi {
 
   doctorSpecialty(symptom) {
     return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      let location = "or-portland";
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${symptom}&location=${location}&skip=0&limit=10&user_key=${process.env.exports.apiKey}`;
+      let request = new XMLHttpRequest();      let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=or-portland&q=${symptomSearch}&name=${nameSearch}&user_key=${process.env.exports.apiKey}`
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);

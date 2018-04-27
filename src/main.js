@@ -15,7 +15,7 @@ function getResults(displayresults) {
       let phone = results.data[i].practices[0].phones[0].number;
       let website = results.data[i].practices[0].website || "no website";
       let available = results.data[i].practices[0].accepts_new_patients;
-      $('#output').append(`<ol>
+      $('#output').text(`<ol>
       <h2>Doctor Name:
       ${name}</h2>
       <h2>Address:</h2>
@@ -58,4 +58,4 @@ $(document).ready(function(){
         }
       })
     })
-  });
+  })
