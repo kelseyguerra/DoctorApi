@@ -32,8 +32,8 @@ class doctorApi {
       request.open("GET", url, true); request.send();
     });
 
-    function getResults(displayresults) {
-      let doctorResults = [];
+    function getResults(allresults) {
+      let results = allresults;
       if (results.data.length > 0) {
         for (let i = 0; i < results.data.length; i++) {
           let name = results.data[i].profile.first_name + " " + results.data[i].profile.last_name + ", " + results.data[i].profile.title;
