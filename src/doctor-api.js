@@ -40,4 +40,4 @@ class doctorApi {
   }
 }
 
-export { ApiCall }
+export { doctorApi }

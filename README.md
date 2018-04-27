@@ -15,7 +15,10 @@
 
 Behavior | Input | Ouput
 ------------ | ------------- | -------------
-
+Input: Doctor Name | Output: Doctor Name, Address, Phone Number, Website, Availability
+Input: Wrong Name | Output: Error
+Input: Symptoms | Output: Doctors Who Specialize in Said Symptoms
+Input: Wrong Symptoms | Output: Error
 
 ## Setup/Installation Requirements
 
