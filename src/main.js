@@ -1,5 +1,4 @@
-import { ApiCall } from './doctor-api.js';
-import { getDoctor } from './doctor.js';
+import { doctorApi } from './doctor-api.js';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +16,36 @@ function getResults(displayresults) {
     let phone = results.data[i].practices[0].phones[0].number;
     let website = results.data[i].practices[0].website || "no website";
     let available = results.data[i].practices[0].accepts_new_patients;
-    $('#output').append(`Doctor Name: ${doctorFirstName}, ${doctorLastName}<br> Address: ${addressStreet}, ${addressCity}, ${addressState},${addressZip}<br> Phone: ${phone}<br> Website: ${website}<br> Availability: ${available} `);
+    $('#output').append(`<ol>
+      <h2>Doctor Name:
+      ${doctorFirstName} ${doctorLastName}<h2>
+      <h2>Address:</h2>
+      <p>${addressStreet}
+      <br>${addressCity}, ${addressState}
+      <br>${addressZip}</p>
+      <h2>Phone:</h2>
+      <p>${phone}</p>
+      <br><h2>Website:</h2>
+      <p>${website}</p>
+      <br><h2>Availability:</h2>
+      <p>${available}</p>`);
   }
 }
+
+$(document).ready(function(){
+  $("#doctorByName").submit(function(event){
+    event.preventDefault();
+    let docName = $("#name").val();
+    let searchDoctorName = new doctorApi();
+    let promise = searchDoctorName.doctorByName(docName);
+    promise.then(function(response) {
+      let results = JSON.parse(response);
+      if (results.data.lenth === 0) {
+        $("#output").append(`Error. No doctors with that name in this area.`)
+      } else {
+        return getResults();
+      }
+      console.log(getResults);
+    })
+  })
+});
