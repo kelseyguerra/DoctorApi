@@ -19,8 +19,12 @@ Behavior | Input | Ouput
 
 ## Setup/Installation Requirements
 
-* [View/Clone repo]
-* [View demo]
+* Create an account at https://developer.betterdoctor.com/.
+* Confirm your account to receive access to your API KEY.
+* Clone https://github.com/kelseyguerra/doctorApi.git
+* Create a .env file to store your own API Key
+* run npm install
+* run npm build
 
 ## Technologies Used
 

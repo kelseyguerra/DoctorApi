@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 function getResults(displayresults) {
-  let results = [];
   if (results.data.length > 0) {
     for (let i = 0; i < results.data.length; i++) {
       let name = results.data[i].profile.first_name + " " + results.data[i].profile.last_name + ", " + results.data[i].profile.title;
@@ -37,7 +36,7 @@ $(document).ready(function(){
     event.preventDefault();
     let nameSearch = $("#name").val();
     let findDoctor = new doctorApi();
-    let promise = findDoctor.doctorByName(nameSearch);
+    let promise=findDoctor.doctorByName(nameSearch);
     promise.then(function(response) {
       let results = JSON.parse(response);
       if (results.data.length === 0) {
@@ -62,8 +61,3 @@ $(document).ready(function(){
       })
     })
   });
-  // doctorSearch.doctorName(name, location).then(function(response) {
-  //   let results = JSON.parse(response);
-  //   let doctorSearch = findDoctor.parseData(results);
-  //   getResults(doctorSearch);
-  // })
