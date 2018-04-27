@@ -4,6 +4,12 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+function clearSearch() {
+  $('#name').val('');
+  $('#symptom').val('');
+  $('#output').empty();
+}
+
 function getResults(displayresults) {
   let results = displayresults;
   for(let i = 0; i < results.data.length; i++) {
@@ -35,17 +41,25 @@ function getResults(displayresults) {
 $(document).ready(function(){
   $("#doctorByName").submit(function(event){
     event.preventDefault();
-    let docName = $("#name").val();
-    let searchDoctorName = new doctorApi();
-    let promise = searchDoctorName.doctorByName(docName);
-    promise.then(function(response) {
-      let results = JSON.parse(response);
-      if (results.data.lenth === 0) {
-        $("#output").append(`Error. No doctors with that name in this area.`)
-      } else {
-        return getResults();
-      }
-      console.log(getResults);
-    })
+    let nameSearch = $("#name").val();
+    let symptomSearch = $("#symptom").val();
+    let findDoctor = new doctorApi();
+    clearSearch();
+
+  doctorSearch.doctorName(name, location).then(function(response) {
+    let results = JSON.parse(response);
+    let doctorSearch = findDoctor.parseData(results);
+    getResults(doctorSearch);
   })
-});
+
+    // let promise = searchDoctorName.doctorByName(docName);
+    // promise.then(function(response) {
+    //   let results = JSON.parse(response);
+    //   if (results.data.lenth === 0) {
+    //     $("#output").append(`Error. No doctors with that name in this area.`)
+    //   } else {
+    //     return getResults();
+    //   }
+    //   console.log(getResults);
+//     })
+//   })
