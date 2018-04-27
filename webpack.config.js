@@ -19,7 +19,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({,
     new Dotenv()
-      title: 'Ping Pong',
+      title: 'Doctor',
       template: './src/index.html',
       inject: 'body'
     })
