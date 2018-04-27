@@ -44,11 +44,9 @@ class doctorApi {
           let phone = results.data[i].practices[0].phones[0].number;
           let website = results.data[i].practices[0].website || "no website";
           let available = results.data[i].practices[0].accepts_new_patients;
-          let doctor = new Doctor(name, street, city, state, zip, phone, website, available);
-          doctorResults.push(doctor);
+          ('$#output').append(`${name}<br>${city}<br>${state}<br>${zip}<br>${phone}<br>${website},${available}`)
       }
     }
-    return doctorResults;
 }
 
 export { doctorApi }
