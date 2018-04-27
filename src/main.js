@@ -36,9 +36,8 @@ $(document).ready(function(){
     event.preventDefault();
     let nameSearch = $("#name").val();
     let findDoctor = new doctorApi();
-    let promise=findDoctor.doctorByName(nameSearch);
-    promise.then(function(response) {
-      let results = JSON.parse(response);
+    findDoctor.doctorByName(nameSearch).then(function(response){
+      let results = JSON.parse(response)
       if (results.data.length === 0) {
         $('#nameError').append(`Error. No doctors with that name in this area.`)
       } else {
@@ -50,9 +49,8 @@ $(document).ready(function(){
       event.preventDefault();
       let symptomSearch = $("#symptom").val();
       let findSymptom = new doctorApi();
-      let symptomPromise = findSymptom.doctorBySymptom(symptomSearch);
-      promise.then(function(response) {
-        let results = JSON.parse(response);
+      findSymptom.doctorBySymptom(symptomSearch).then(function(response){
+        let results = JSON.parse(response)
         if (results.data.length === 0) {
           $('#symptomError').append(`Error. No doctors specializing in these symptoms in your area.`)
         } else {

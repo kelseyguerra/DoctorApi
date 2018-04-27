@@ -24,7 +24,7 @@ Input: Wrong Symptoms | Output: Error
 
 * Create an account at https://developer.betterdoctor.com/.
 * Confirm your account to receive access to your API KEY.
-* Clone https://github.com/kelseyguerra/doctorApi.git
+* Clone https://github.com/kelseyguerra/DoctorApi.git
 * Create a .env file to store your own API Key
 * run npm install
 * run npm build
