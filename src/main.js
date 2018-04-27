@@ -11,20 +11,20 @@ function clearSearch() {
 }
 
 function getResults(displayresults) {
-  let results = displayresults;
-  for(let i = 0; i < results.data.length; i++) {
-    let doctorFirstName = results.data[i].profile.first_name;
-    let doctorLastName = results.data[i].profile.last_name;
-    let addressStreet = results.data[i].practices[0].visit_address.street;
-    let addressCity = results.data[i].practice[0].visit_address.city;
-    let addressState = results.data[i].practice[0].visit_address.state;
-    let addressZip = results.data[i].practice[0].visit_address.zip;
-    let phone = results.data[i].practices[0].phones[0].number;
-    let website = results.data[i].practices[0].website || "no website";
-    let available = results.data[i].practices[0].accepts_new_patients;
-    $('#output').append(`<ol>
+  let results = [];
+  if (results.data.length > 0) {
+    for (let i = 0; i < results.data.length; i++) {
+      let name = results.data[i].profile.first_name + " " + results.data[i].profile.last_name + ", " + results.data[i].profile.title;
+      let addressStreet = results.data[i].practices[0].visit_address.street;
+      let addressCity = results.data[i].practice[0].visit_address.city;
+      let addressState = results.data[i].practice[0].visit_address.state;
+      let addressZip = results.data[i].practice[0].visit_address.zip;
+      let phone = results.data[i].practices[0].phones[0].number;
+      let website = results.data[i].practices[0].website || "no website";
+      let available = results.data[i].practices[0].accepts_new_patients;
+      $('#output').append(`<ol>
       <h2>Doctor Name:
-      ${doctorFirstName} ${doctorLastName}<h2>
+      ${name}</h2>
       <h2>Address:</h2>
       <p>${addressStreet}
       <br>${addressCity}, ${addressState}
@@ -42,24 +42,21 @@ $(document).ready(function(){
   $("#doctorByName").submit(function(event){
     event.preventDefault();
     let nameSearch = $("#name").val();
-    let symptomSearch = $("#symptom").val();
     let findDoctor = new doctorApi();
-    clearSearch();
-
-  doctorSearch.doctorName(name, location).then(function(response) {
-    let results = JSON.parse(response);
-    let doctorSearch = findDoctor.parseData(results);
-    getResults(doctorSearch);
+    let promise = findDoctor.doctorByName(nameSearch);
+    promise.then(function(response);{
+      let results = JSON.parse(response);
+      if (results.data.length === 0) {
+        $('#output').append(`Error. No doctors with that name in this area.`)
+      } else {
+        return getResults(results);
+      }
+    })
+    console.log(getResults);
   })
 
-    // let promise = searchDoctorName.doctorByName(docName);
-    // promise.then(function(response) {
-    //   let results = JSON.parse(response);
-    //   if (results.data.lenth === 0) {
-    //     $("#output").append(`Error. No doctors with that name in this area.`)
-    //   } else {
-    //     return getResults();
-    //   }
-    //   console.log(getResults);
-//     })
-//   })
+  // doctorSearch.doctorName(name, location).then(function(response) {
+  //   let results = JSON.parse(response);
+  //   let doctorSearch = findDoctor.parseData(results);
+  //   getResults(doctorSearch);
+  // })
